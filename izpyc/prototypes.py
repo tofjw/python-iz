@@ -34,5 +34,7 @@ def setup(izlib):
     izlib.cs_isFree.restype = c_char
     izlib.cs_isInstantiated.restype = c_char
 
+    x("cs_ScalProd", [c_void_p, c_void_p, c_int], c_void_p)
+1    
     # extern __izwindllexport IZBOOL cs_search(CSint **allvars, int nbVars, CSint* (*findFreeVar)(CSint **allvars, int nbVars));
 

@@ -6,11 +6,14 @@ from .space import Space
 from .util import iz_bool
 
 class Int:
-    def __init__(self, min, max=None):
-        if max is None:
-            self.p = Space.iz.cs_createCSint(min, min)
+    def __init__(self, min, max=None, ptr=None):
+        if ptr is not None:
+            self.p = ptr
         else:
-            self.p = Space.iz.cs_createCSint(min, max)
+            if max is None:
+                self.p = Space.iz.cs_createCSint(min, min)
+            else:
+                self.p = Space.iz.cs_createCSint(min, max)
             
     @property
     def min(self):
