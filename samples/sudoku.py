@@ -6,9 +6,6 @@ import izpyc.constraint as C
 from izpyc import Int
 from izpyc.searcher import SimpleSearcher
 
-# set path to  iz-C
-izpath = "../../izC_v3_7_0_linux64/lib"
-izso = izpath + "/" + "libiz.so"
 
 # https://ja.wikipedia.org/wiki/%E6%95%B0%E7%8B%AC
 x = 0
@@ -50,7 +47,7 @@ def cell_variable(c):
     else:
         return Int(c)
 
-with izpyc.space(izso):
+with izpyc.space():
     variables = list(map(lambda c: cell_variable(c), problem))
 
     # row, col

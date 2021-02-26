@@ -6,11 +6,8 @@ import izpyc.constraint as C
 from izpyc import Int
 from izpyc.searcher import SimpleSearcher
 
-# set path to  iz-C
-izpath = "../../izC_v3_7_0_linux64/lib"
-izso = izpath + "/" + "libiz.so"
 
-with izpyc.space(izso):
+with izpyc.space():
     s = Int(0, 9)
     e = Int(0, 9)
     n = Int(0, 9)
