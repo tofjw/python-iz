@@ -1,3 +1,7 @@
+#
+# Solve SEND+MORE=MONEY
+#
+
 import sys
 sys.path.append("..")
 
@@ -30,6 +34,7 @@ with izpyc.space():
     rc = SimpleSearcher([s, e, d, m, o, r, y]).search()
     print("rc = ", rc)
 
-    print(s.value, e.value, n.value, d.value)
-    print(m.value, o.value, r.value, e.value)
+    print(" ", s.value, e.value, n.value, d.value)
+    print("+", m.value, o.value, r.value, e.value)
+    print("---------")
     print(m.value, o.value, n.value, e.value, y.value)
