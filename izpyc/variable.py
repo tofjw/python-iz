@@ -29,12 +29,66 @@ class Int:
 
     @property
     def is_instantiated(self):
-        print(Space.iz.cs_isInstantiated(self.p))
         return iz_bool(Space.iz.cs_isInstantiated(self.p))
 
     @property
     def is_free(self):
         return iz_bool(Space.iz.cs_isFree(self.p))
+
+    @property
+    def nb_elements(self):
+        return Space.iz.cs_getNbElements(self.p)
+
+
+    def __str__(self):
+        def end_value(v):
+            max_value = self.max
+
+            if v >= max_value:
+                return max_value
+            if self.is_in(v):
+                cur = v
+                while True:
+                    if cur == max_value:
+                        return max_value
+                    if not self.is_in(cur+1):
+                        return cur
+                    cur = cur + 1
+            else:
+                return  Spae.iz.cs_getNextValue(self, v);
+
+        if self.is_instantiated:
+            return str(self.min)
+
+        min_value = self.min
+        max_value = self.max
+        if max_value - min_value + 1 == self.nb_elements:
+            return "{" + "{}..{}".format(min_value, max_value) + "}"
+        
+        seg = []
+        cur = min_value
+        end = None
+
+        while True:
+            end = end_value(cur)
+            print("end value of ", cur, " is ", end)
+            if end == cur:
+                seg.append(str(cur))
+            else:
+                print("end = ", end)
+                seg.append("{}..{}".format(cur, end))
+
+            if end >= max_value:
+                break
+
+            cur = Space.iz.cs_getNextValue(self.p, end)
+
+        return "{" + ", ".join(seg) + "}"
+
+
+    def is_in(self, val):
+        return iz_bool(Space.iz.cs_isIn(self.p, val))
+    
 
     def __eq__(self, other):
         if isinstance(other, Int):
