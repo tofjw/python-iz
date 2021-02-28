@@ -30,6 +30,10 @@ def setup(izlib):
     x("cs_isFree", [c_void_p], izbool_t)
     x("cs_isInstantiated", [c_void_p], izbool_t)
 
+    x("cs_saveContext", [], c_int)
+    x("cs_restoreContextUntil", [c_int], None)
+    x("cs_forgetSaveContextUntil", [c_int], None)
+    
     izlib.cs_createCSint.restype = c_void_p
     izlib.cs_getVersion.restype = c_char_p
     izlib.cs_getMin.argtypes = [c_void_p]
