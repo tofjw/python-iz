@@ -71,11 +71,9 @@ class Int:
 
         while True:
             end = end_value(cur)
-            print("end value of ", cur, " is ", end)
             if end == cur:
                 seg.append(str(cur))
             else:
-                print("end = ", end)
                 seg.append("{}..{}".format(cur, end))
 
             if end >= max_value:
