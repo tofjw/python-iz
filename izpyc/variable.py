@@ -88,53 +88,38 @@ class Int:
         return iz_bool(Space.iz.cs_isIn(self.p, val))
     
 
-    def __eq__(self, other):
+    def iz_cmp_op(self, other, izfunc, izfunc_const):
         if isinstance(other, Int):
-            return iz_bool(Space.iz.cs_Eq(self.p, other.p))
+            return iz_bool(izfunc(self.p, other.p))
         elif isinstance(other, int):
-            return iz_bool(Space.iz.cs_EQ(self.p, other))
+            return iz_bool(izfunc_const(self.p, other))
         else:
             raise ValueError("operation is not defined for " + str(other))
+        
+
+    def __eq__(self, other):
+        return self.iz_cmp_op(other, Space.iz.cs_Eq, Space.iz.cs_EQ)
+
 
     def __ne__(self, other):
-        if isinstance(other, Int):
-            return iz_bool(Space.iz.cs_Neq(self.p, other.p))
-        elif isinstance(other, int):
-            return iz_bool(Space.iz.cs_NEQ(self.p, other))
-        else:
-            raise ValueError("operation is not defined for " + str(other))
+        return self.iz_cmp_op(other, Space.iz.cs_Neq, Space.iz.cs_NEQ)
+
     
     def __le__(self, other):
-        if isinstance(other, Int):
-            return iz_bool(Space.iz.cs_Le(self.p, other.p))
-        elif isinstance(other, int):
-            return iz_bool(Space.iz.cs_LE(self.p, other))
-        else:
-            raise ValueError("operation is not defined for " + str(other))
+        return self.iz_cmp_op(other, Space.iz.cs_Le, Space.iz.cs_LE)
+
 
     def __lt__(self, other):
-        if isinstance(other, Int):
-            return iz_bool(Space.iz.cs_Lt(self.p, other.p))
-        elif isinstance(other, int):
-            return iz_bool(Space.iz.cs_LT(self.p, other))
-        else:
-            raise ValueError("operation is not defined for " + str(other))
+        return self.iz_cmp_op(other, Space.iz.cs_Lt, Space.iz.cs_LT)
+
 
     def __ge__(self, other):
-        if isinstance(other, Int):
-            return iz_bool(Space.iz.cs_Ge(self.p, other.p))
-        elif isinstance(other, int):
-            return iz_bool(Space.iz.cs_GE(self.p, other))
-        else:
-            raise ValueError("operation is not defined for " + str(other))
+        return self.iz_cmp_op(other, Space.iz.cs_Ge, Space.iz.cs_GE)
+
 
     def __gt__(self, other):
-        if isinstance(other, Int):
-            return iz_bool(Space.iz.cs_Gt(self.p, other.p))
-        elif isinstance(other, int):
-            return iz_bool(Space.iz.cs_GT(self.p, other))
-        else:
-            raise ValueError("operation is not defined for " + str(other))
+        return self.iz_cmp_op(other, Space.iz.cs_Gt, Space.iz.cs_GT)
+
 
     def __add__(self, other):
         if isinstance(other, Int):
