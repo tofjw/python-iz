@@ -24,12 +24,11 @@ with izpyc.space():
     v1 = C.scal_prod([s, e, n, d], [1000, 100, 10, 1])
     v2 = C.scal_prod([m, o, r, e], [1000, 100, 10, 1])
     v3 = C.scal_prod([m, o, n, e, y], [10000, 1000, 100, 10, 1])
-    v12 = C.scal_prod([v1, v2], [1, 1])
 
     C.all_neq([s, e, n, d, m, o, r, y])
     s != 0
     m != 0
-    v3 == v12
+    v3 == v1 + v2
 
     rc = SimpleSearcher([s, e, d, m, o, r, y]).search()
     print("rc = ", rc)

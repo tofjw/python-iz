@@ -56,3 +56,25 @@ def scal_prod(variables, coeffs):
     Space.registered_array.append(varray)
     Space.registered_array.append(carray)
     return Int(0, ptr=Space.iz.cs_ScalProd(varray, carray, len(variables)))
+
+
+def sigma(variables):
+    varray = create_c_ptr_array(variables)
+    Space.registered_array.append(varray)
+    return Int(0, ptr=Space.iz.cs_Sigma(varray, len(variables)))
+
+
+def abs(v):
+    return Int(0, ptr=Space.iz.cs_Abs(v.p))
+
+
+def min(variables):
+    varray = create_c_ptr_array(variables)
+    Space.registered_array.append(varray)
+    return Int(0, ptr=Space.iz.cs_Min(varray, len(variables)))
+
+
+def max(variables):
+    varray = create_c_ptr_array(variables)
+    Space.registered_array.append(varray)
+    return Int(0, ptr=Space.iz.cs_Max(varray, len(variables)))

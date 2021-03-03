@@ -30,6 +30,18 @@ def setup(izlib):
     x("cs_isFree", [c_void_p], izbool_t)
     x("cs_isInstantiated", [c_void_p], izbool_t)
 
+    x("cs_Add", [c_void_p, c_void_p], c_void_p)
+    x("cs_Sub", [c_void_p, c_void_p], c_void_p)
+    x("cs_Mul", [c_void_p, c_void_p], c_void_p)
+
+    x("cs_ScalProd", [c_void_p, c_void_p, c_int], c_void_p)
+    x("cs_Sigma", [c_void_p, c_int], c_void_p)
+
+    x("cs_Abs", [c_void_p], c_void_p)
+
+    x("cs_Min", [c_void_p, c_int], c_void_p)
+    x("cs_Max", [c_void_p, c_int], c_void_p)
+    
     x("cs_saveContext", [], c_int)
     x("cs_restoreContextUntil", [c_int], None)
     x("cs_forgetSaveContextUntil", [c_int], None)
@@ -43,6 +55,6 @@ def setup(izlib):
     izlib.cs_search.restype = izbool_t
 
     x("cs_ScalProd", [c_void_p, c_void_p, c_int], c_void_p)
-1    
+
     # extern __izwindllexport IZBOOL cs_search(CSint **allvars, int nbVars, CSint* (*findFreeVar)(CSint **allvars, int nbVars));
 

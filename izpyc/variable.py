@@ -135,3 +135,46 @@ class Int:
             return iz_bool(Space.iz.cs_GT(self.p, other))
         else:
             raise ValueError("operation is not defined for " + str(other))
+
+    def __add__(self, other):
+        if isinstance(other, Int):
+            return Int(0, ptr=Space.iz.cs_Add(self.p, other.p))
+        elif isinstance(other, int):
+            v = Int(other, other)
+            return Int(0, ptr=Space.iz.cs_Add(self.p, v.p))
+        else:
+            raise ValueError("operation is not defined for " + str(other))
+
+    def __radd__(self, other):
+        return self.__add__(other)
+
+
+    def __sub__(self, other):
+        if isinstance(other, Int):
+            return Int(0, ptr=Space.iz.cs_Sub(self.p, other.p))
+        elif isinstance(other, int):
+            v = Int(other, other)
+            return Int(0, ptr=Space.iz.cs_Sub(self.p, v.p))
+        else:
+            raise ValueError("operation is not defined for " + str(other))
+
+    def __rsub__(self, other):
+        if isinstance(other, Int):
+            return Int(0, ptr=Space.iz.cs_Sub(other.p, self.p))
+        elif isinstance(other, int):
+            v = Int(other, other)
+            return Int(0, ptr=Space.iz.cs_Sub(v.p, self.p))
+        else:
+            raise ValueError("operation is not defined for " + str(other))
+
+    def __mul__(self, other):
+        if isinstance(other, Int):
+            return Int(0, ptr=Space.iz.cs_Mul(self.p, other.p))
+        elif isinstance(other, int):
+            v = Int(other, other)
+            return Int(0, ptr=Space.iz.cs_Mul(self.p, v.p))
+        else:
+            raise ValueError("operation is not defined for " + str(other))
+
+    def __rmul__(self, other):
+        return self.__mul__(other)
