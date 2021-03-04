@@ -45,8 +45,10 @@ def setup(izlib):
     x("cs_saveContext", [], c_int)
     x("cs_restoreContextUntil", [c_int], None)
     x("cs_forgetSaveContextUntil", [c_int], None)
+
+    x("cs_createCSint", [c_int, c_int], c_void_p)
+    x("cs_createCSintFromDomain", [c_void_p, c_int], c_void_p)
     
-    izlib.cs_createCSint.restype = c_void_p
     izlib.cs_getVersion.restype = c_char_p
     izlib.cs_getMin.argtypes = [c_void_p]
     izlib.cs_getMax.argtypes = [c_void_p]

@@ -2,18 +2,33 @@
 # CSint wrapper
 #
 
+from ctypes import *
 from .space import Space
 from .util import iz_bool
 
 class Int:
-    def __init__(self, min, max=None, ptr=None):
+    def __init__(self, min_or_dom, max=None, ptr=None):
         if ptr is not None:
             self.p = ptr
         else:
-            if max is None:
-                self.p = Space.iz.cs_createCSint(min, min)
+            if hasattr(min_or_dom, "__iter__"):
+                # min_or_dom is domain
+                if max is not None:
+                    raise RunTimeError("second arg is not needed")
+                vals = list(min_or_dom)
+                DOMTYPE = c_int * len(vals)
+                array = DOMTYPE()
+                for i, v in enumerate(vals):
+                    array[i] = int(v)
+
+                self.p = Space.iz.cs_createCSintFromDomain(array, len(vals))
             else:
-                self.p = Space.iz.cs_createCSint(min, max)
+                # min_or_dom is min
+                if max is None:
+                    c = int(min_or_dom)
+                    self.p = Space.iz.cs_createCSint(c, c)
+                else:
+                    self.p = Space.iz.cs_createCSint(int(min_or_dom), int(max))
             
     @property
     def min(self):
