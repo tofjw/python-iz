@@ -1,35 +1,12 @@
 from ctypes import *
 from .space import Space
 from .util import iz_bool
+from .intutil import create_c_ptr_array
 from .variable import Int
 
 #
 # common functions
 #
-
-
-def get_cs_int_ptr(v):
-    if isinstance(v, Int):
-        return v.p
-    elif isinstance(v, int):
-        cv = Int(v, v)
-        return cv.p
-    else:
-        raise ValueError("operation is not defined for " + str(v))
-
-    return None
-
-
-def create_c_ptr_array(var_array):
-    ptrs = map(get_cs_int_ptr, var_array)
-    VARSTYPE = c_void_p * len(var_array)
-    array = VARSTYPE()
-
-    for i, p in enumerate(ptrs):
-        array[i] = p
-
-    return array
-
 
 def create_const_array(const_array):
     CTYPE = c_int * len(const_array)
