@@ -14,7 +14,7 @@ class Int:
             if hasattr(min_or_dom, "__iter__"):
                 # min_or_dom is domain
                 if max is not None:
-                    raise RunTimeError("second arg is not needed")
+                    raise RuntimeError("second arg is not needed")
                 vals = list(min_or_dom)
                 DOMTYPE = c_int * len(vals)
                 array = DOMTYPE()
