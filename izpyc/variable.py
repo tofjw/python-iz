@@ -98,6 +98,10 @@ class Int:
 
         return "{" + ", ".join(seg) + "}"
 
+    
+    def _ipython_display(self):
+        print(self.__str__())
+        
 
     def is_in(self, val):
         return iz_bool(Space.iz.cs_isIn(self.p, val))
