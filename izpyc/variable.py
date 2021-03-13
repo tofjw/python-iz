@@ -99,7 +99,7 @@ class Int:
         return "{" + ", ".join(seg) + "}"
 
     
-    def _ipython_display(self):
+    def _ipython_display_(self):
         print(self.__str__())
         
 
