@@ -28,7 +28,6 @@ class Space:
                 Space.iz.cs_end()
                 Space.iz = None
                 
-            print("destroyed")
             self.is_valid = False
         else:
             raise RuntimeError("Space object is already destroyed")
